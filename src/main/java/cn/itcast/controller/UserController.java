@@ -22,10 +22,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 登录的方法
+     * @param user
+     * @param session
+     * @return
+     */
     @RequestMapping("/login")
     public String login(User user, HttpSession session){
         User login = userService.login(user);
-       // System.out.println("aaa");
+        //System.out.println("aaa");
         if (login != null){
             session.setAttribute("login",login);
            // System.out.println(session.getAttribute("login"));

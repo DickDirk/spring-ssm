@@ -23,6 +23,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    /**
+     * 查找所有
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/findAll")
     public ModelAndView findAll(Integer currentPage, Integer pageSize) {
         if (currentPage == null || currentPage == 0) {
@@ -40,6 +46,11 @@ public class StudentController {
 
     }
 
+    /**
+     * 添加的方法
+     * @param student
+     * @return
+     */
     @RequestMapping("/add")
     public String add(Student student) {
         studentService.add(student);
@@ -47,6 +58,12 @@ public class StudentController {
         return "redirect:/student/findAll.do";
     }
 
+    /**
+     * 查找一个  用于修改
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/findOne")
     public String findOne(Integer id, Model model) {
         Student student = studentService.findOne(id);
@@ -55,12 +72,24 @@ public class StudentController {
         return "update";
     }
 
+    /**
+     * 修改的方法
+     * @param student
+     * @return
+     */
     @RequestMapping("/update")
     public String update(Student student) {
         studentService.update(student);
         System.out.println(student);
         return "redirect:/student/findAll.do";
     }
+
+    /**
+     * 查找一个
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/updateBefore")
     public String updateBefore(Integer id,Model model) {
         Student student = studentService.updateBefore(id);
@@ -68,12 +97,23 @@ public class StudentController {
         System.out.println(student);
         return "update";
     }
+
+    /**
+     * 删除的方法(一个)
+     * @param id
+     * @return
+     */
     @RequestMapping("/delOne")
     public String delOne(Integer id) {
         studentService.delOne(id);
         return "redirect:/student/findAll.do";
     }
 
+    /**
+     * 删除多个
+     * @param ids
+     * @return
+     */
     @RequestMapping("/del")
     public String del(Integer[] ids) {
         studentService.del(ids);
